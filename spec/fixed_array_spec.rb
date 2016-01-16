@@ -10,7 +10,7 @@ RSpec.describe do
     expect{ array.get(6) }.to raise_error(OutOFBoundsException)
   end
 
-  it "can set a value of an array" do
+  it "can set a value of an index in an array" do
     expect(array.set(1, "cat")).to eq("cat")
     expect(array.get(1)).to eq("cat")
   end
