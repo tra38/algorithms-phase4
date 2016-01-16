@@ -20,9 +20,4 @@ RSpec.describe do
     expect(@array.get(0)).to eq("cat")
   end
 
-
-
-
-
-
 end
