@@ -20,4 +20,9 @@ RSpec.describe do
     expect(@array.get(0)).to eq("cat")
   end
 
+  it "can insert an element in this ArrayList" do
+    expect(@array.insert(1,"cat")).to eq("cat")
+    expect(@array.size).to eq(6)
+  end
+
 end

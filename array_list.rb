@@ -32,6 +32,21 @@ class ArrayList
     @array.set(index, element)
   end
 
-
+  def insert(index_to_insert, element_to_insert)
+    temp_array = FixedArray.new(size + 1)
+    0.upto(index_to_insert - 1) do |index|
+      element = @array.get(index)
+      temp_array.set(index, element)
+    end
+    temp_array.set(index_to_insert, element_to_insert)
+    current_index = index_to_insert + 1
+    (current_index).upto(size) do |index|
+      element = @array.get(index - 1)
+      temp_array.set(index, element)
+    end
+    @array = temp_array
+    @size += 1
+    element_to_insert
+  end
 
 end
