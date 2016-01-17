@@ -4,5 +4,5 @@
 - ArrayList#get - O(1).
 - ArrayList#set - O(1).
 - ArrayList#size - O(1).
-- ArrayList#insert - O(1), amortized constant time. The worst-case scenario is O(n), when we call ArrayList#resize_array.
+- ArrayList#insert - O(n). Even if we do not need to call ArrayList#resize_array, we do have to spend some time shifting the other elements one index over.
 - ArrayList#resize_array - O(n). We need to recreate a brand new array and then copy everything from the old array into the new one.
