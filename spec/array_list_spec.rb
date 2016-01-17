@@ -8,6 +8,7 @@ RSpec.describe do
   it "can add a new element to this ArrayList" do
     expect(@array.size).to eq(5)
     expect(@array.add("cat")).to eq("cat")
+    expect(@array.get(5)).to eq("cat")
     expect(@array.size).to eq(6)
   end
 
@@ -22,7 +23,16 @@ RSpec.describe do
 
   it "can insert an element in this ArrayList" do
     expect(@array.insert(1,"cat")).to eq("cat")
+    expect(@array.get(1)).to eq("cat")
     expect(@array.size).to eq(6)
+  end
+
+  it "can successfully resize an ArrayList" do
+    6.times do
+      @array.add("cat")
+    end
+    expect(@array.get(10)).to eq("cat")
+    expect(@array.size).to eq(11)
   end
 
 end

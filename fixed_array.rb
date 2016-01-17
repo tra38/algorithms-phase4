@@ -2,6 +2,8 @@ class OutOFBoundsException < RuntimeError
 end
 
 class FixedArray
+  attr_reader :size
+
   def initialize(size)
     @size = size
     size.times do |index|

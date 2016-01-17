@@ -5,18 +5,18 @@ class ArrayList
 
   def initialize(size)
     @size = size
-    @array = FixedArray.new(size)
+    @array = FixedArray.new(size * 2)
   end
 
   def add(element)
-    create_new_array(size)
+    resize_array if (@array.size + 1 > self.size)
     @size += 1
-    @array.set(size, element)
+    @array.set(size - 1, element)
     element
   end
 
-  def create_new_array(size)
-    temp_array = FixedArray.new(size + 1)
+  def resize_array
+    temp_array = FixedArray.new(size * 2 )
     size.times do |index|
       element = @array.get(index)
       temp_array.set(index, element)
@@ -33,20 +33,14 @@ class ArrayList
   end
 
   def insert(index_to_insert, element_to_insert)
-    temp_array = FixedArray.new(size + 1)
-    0.upto(index_to_insert - 1) do |index|
-      element = @array.get(index)
-      temp_array.set(index, element)
-    end
-    temp_array.set(index_to_insert, element_to_insert)
-    current_index = index_to_insert + 1
-    (current_index).upto(size) do |index|
+    resize_array if (@array.size + 1 > self.size)
+    next_index = index_to_insert + 1
+    (next_index).upto(size) do |index|
       element = @array.get(index - 1)
-      temp_array.set(index, element)
+      @array.set(index, element)
     end
-    @array = temp_array
     @size += 1
-    element_to_insert
+    @array.set(index_to_insert, element_to_insert)
   end
 
 end
