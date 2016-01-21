@@ -6,10 +6,10 @@ RSpec.describe do
   end
 
   it "can add a new element to this ArrayList" do
-    expect(@array.size).to eq(5)
+    expect(@array.size).to eq(0)
     expect(@array.add("cat")).to eq("cat")
-    expect(@array.get(5)).to eq("cat")
-    expect(@array.size).to eq(6)
+    expect(@array.get(0)).to eq("cat")
+    expect(@array.size).to eq(1)
   end
 
   it "can get an element in this ArrayList" do
@@ -24,15 +24,31 @@ RSpec.describe do
   it "can insert an element in this ArrayList" do
     expect(@array.insert(1,"cat")).to eq("cat")
     expect(@array.get(1)).to eq("cat")
-    expect(@array.size).to eq(6)
+    expect(@array.size).to eq(1)
   end
 
   it "can successfully resize an ArrayList" do
-    6.times do
+    expect(@array.length).to eq(10)
+    11.times do
       @array.add("cat")
     end
     expect(@array.get(10)).to eq("cat")
     expect(@array.size).to eq(11)
+    expect(@array.length).to eq(20)
+  end
+
+  it "avoids resizing an ArrayList needlessly when adding" do
+    10.times do
+      @array.add("cat")
+      expect(@array.length).to eq(10)
+    end
+  end
+
+  it "avoids resizing an ArrayList needlessly when inserting" do
+    10.times do
+      @array.insert(1,"cat")
+      expect(@array.length).to eq(10)
+    end
   end
 
 end
