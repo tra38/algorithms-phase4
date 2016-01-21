@@ -1,0 +1,49 @@
+require_relative '../linked_list.rb'
+
+RSpec.describe do
+
+  before(:each) do
+    @linked_list = LinkedList.new
+  end
+
+#Consider reducing duplicate code by creating different 'describe'
+#blocks, which each describe block containing boilerplate
+#code, and the automated tests doing its own unique things.
+  it "can insert a node in front of a linked list" do
+    @front_node = Node.new("dog")
+    @linked_list.insert_first(@front_node)
+    expect(@linked_list.head).to eq(@front_node)
+  end
+
+  it "can remove a node in the front of a linked list, if such a node exists" do
+    @front_node = Node.new("dog")
+    @linked_list.insert_first(@front_node)
+    expect(@linked_list.remove_first).to eq(@front_node)
+    expect(@linked_list.head).to eq(nil)
+  end
+
+  it "returns nil if a user tries to remove a node in front of a linked list, but no such node exists" do
+    expect(@linked_list.remove_first).to eq(nil)
+  end
+
+  it "can insert a node in the back of a linked list" do
+    @back_node = Node.new("cat")
+    @linked_list.insert_last(@back_node)
+    expect(@linked_list.tail).to eq(@back_node)
+  end
+
+  it "can get an element in front of a linked list" do
+    @front_node = Node.new("dog")
+    @linked_list.insert_first(@front_node)
+    expect(@linked_list.get(0)).to eq(@front_node)
+  end
+
+  it "ensures that the head will point to the next item in the list" do
+    @front_node = Node.new("dog")
+    @back_node = Node.new("cat")
+    @linked_list.insert_first(@front_node)
+    @linked_list.insert_last(@back_node)
+    expect(@front_node.next).to eq(@back_node)
+  end
+
+end
