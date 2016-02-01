@@ -42,4 +42,25 @@ RSpec.describe do
     expect(@front_node.next).to eq(@back_node)
   end
 
+  describe "can insert a node in the middle of the linked list" do
+    before(:each) do
+      @linked_list.insert_first(@front_node)
+      @linked_list.insert_last(@back_node)
+      @middle_node = Node.new("parrot")
+      @linked_list.set(1,@middle_node)
+    end
+
+    it "inserts the node in the correct location" do
+      expect(@linked_list.get(1)).to eq(@middle_node)
+    end
+
+    it "connects the previous node in the linked list to the inserted node" do
+      expect(@front_node.next).to eq(@middle_node)
+    end
+
+    it "connects the inserted node to the next node in the linked list" do
+      expect(@middle_node.next).to eq(@back_node)
+    end
+  end
+
 end

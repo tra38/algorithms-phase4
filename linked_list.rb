@@ -40,6 +40,21 @@ class LinkedList
     @array_list.get(index)
   end
 
+  def set(index, element)
+    array_list.insert(index, element)
+    increase_length
+    index_of_previous_node = index - 1
+    if index_of_previous_node >= 0
+      previous_node = @array_list.get(index_of_previous_node)
+      previous_node.next = element if previous_node
+    end
+    index_of_next_node = index + 1
+    if index_of_next_node >= 0
+      next_node = @array_list.get(index_of_next_node)
+      element.next = next_node if next_node
+    end
+  end
+
   private
 
   def increase_length
