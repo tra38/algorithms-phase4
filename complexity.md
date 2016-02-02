@@ -6,3 +6,11 @@
 - ArrayList#size - O(1).
 - ArrayList#insert - O(n). Even if we do not need to call ArrayList#resize_array, we do have to spend some time shifting the other elements one index over.
 - ArrayList#resize_array - O(n). We need to recreate a brand new array and then copy everything from the old array into the new one.
+
+==LinkedList==
+- LinkedList#new - O(1)
+- LinkedList#insert_first - O(n). This requires inserting an item into the ArrayList, and since inserting is O(n), the LinkedList#insert_first is also O(n) as well.
+- LinkedList#insert_last - O(1)
+- LinkedList#set - O(1)
+
+Inserting a value in a LinkedList is faster than inserting a value in an ArrayList since you only need to change two elements (the one before and after the inserted Node) instead of having to change the entire array.
