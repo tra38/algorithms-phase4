@@ -20,6 +20,7 @@ RSpec.describe do
     @linked_list.insert_first(@front_node)
     expect(@linked_list.remove_first).to eq(@front_node)
     expect(@linked_list.head).to eq(nil)
+    expect(@linked_list.get(0)).to eq(nil)
   end
 
   it "returns nil if a user tries to remove a node in front of a linked list, but no such node exists" do

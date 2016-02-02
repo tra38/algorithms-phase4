@@ -2,11 +2,12 @@ require_relative 'node'
 require_relative 'array_list'
 
 class LinkedList
-  attr_reader :head, :tail, :length, :array_list
+  attr_reader :head, :tail, :length, :size, :array_list
 
   def initialize
     @array_list = ArrayList.new(5)
     @length = 0
+    @size = length + 1
   end
 
   def insert_first(element)
@@ -21,6 +22,7 @@ class LinkedList
       node = head
       @head = nil
       decrease_length
+      create_new_array_list
       node
     end
   end
@@ -68,6 +70,15 @@ class LinkedList
       next_node = @array_list.get(index_of_next_node)
       element.next = next_node if next_node
     end
+  end
+
+  def create_new_array_list
+    new_array_list = ArrayList.new(5)
+    length.times do |index|
+      element = array_list.get(index + 1)
+      new_array_list.set(index + 1, element)
+    end
+    @array_list = new_array_list
   end
 
 end
