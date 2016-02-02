@@ -39,11 +39,11 @@ class LinkedList
 
   def set(index, element)
     array_list.insert(index, element)
-    increase_length
     index_of_previous_node = index - 1
     attach_to_previous_node(index_of_previous_node, element)
     index_of_next_node = index + 1
     attach_to_next_node(index_of_next_node, element)
+    increase_length
   end
 
   private

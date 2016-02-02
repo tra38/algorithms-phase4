@@ -47,7 +47,11 @@ RSpec.describe do
       @linked_list.insert_first(@front_node)
       @linked_list.insert_last(@back_node)
       @middle_node = Node.new("parrot")
-      @linked_list.set(1,@middle_node)
+      @returned_value = @linked_list.set(1,@middle_node)
+    end
+
+    it "expects the returned value to equal the size of the list" do
+      expect(@returned_value).to eq(3)
     end
 
     it "inserts the node in the correct location" do
