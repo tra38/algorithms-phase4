@@ -163,6 +163,17 @@ class LinkedList
     increase_size
   end
 
+  #A O(n) implementation of size (I had already made an O(1) version)
+  # def counter
+  #   counter = 0
+  #   current_node = head
+  #   until current_node == nil
+  #     counter += 1
+  #     current_node = current_node.next
+  #   end
+  #   counter
+  # end
+
   private
 
   def increase_size
