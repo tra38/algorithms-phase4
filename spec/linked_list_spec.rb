@@ -23,6 +23,14 @@ RSpec.describe do
     expect(@linked_list.get(0)).to eq(nil)
   end
 
+  it "can remove a node in the front of a linked list and promote the next node to the new 'head' " do
+    @linked_list.insert_first(@front_node)
+    @linked_list.insert_last(@back_node)
+    @linked_list.remove_first
+    expect(@linked_list.head).to eq(@back_node)
+    expect(@linked_list.get(0)).to eq(@back_node)
+  end
+
   it "returns nil if a user tries to remove a node in front of a linked list, but no such node exists" do
     expect(@linked_list.remove_first).to eq(nil)
   end

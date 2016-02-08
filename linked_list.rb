@@ -20,7 +20,7 @@ class LinkedList
   def remove_first
     if head
       node = head
-      @head = nil
+      @head = node.next
       decrease_length
       create_new_array_list
       node
@@ -76,7 +76,7 @@ class LinkedList
     new_array_list = ArrayList.new(5)
     length.times do |index|
       element = array_list.get(index + 1)
-      new_array_list.set(index + 1, element)
+      new_array_list.set(index, element)
     end
     @array_list = new_array_list
   end
