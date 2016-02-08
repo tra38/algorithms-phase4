@@ -27,12 +27,25 @@ class LinkedList
     end
   end
 
+  def remove_last
+    if tail
+      node = tail
+      @array_list.set(@index, nil)
+      @tail = @array_list.get(tail_index - 1)
+      decrease_length
+      node
+    end
+  end
+
   def insert_last(element)
     @tail = element
     @array_list.add(@tail)
-    index_of_previous_node = @length - 1
-    attach_to_previous_node(index_of_previous_node, element)
+    attach_to_previous_node(tail_index, element)
     increase_length
+  end
+
+  def tail_index
+    @length - 1
   end
 
   def get(index)
