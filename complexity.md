@@ -12,6 +12,8 @@
 - LinkedList#insert_first - O(n). This requires inserting an item into the ArrayList, and since inserting is O(n), the LinkedList#insert_first is also O(n) as well.
 - LinkedList#insert_last - O(1)
 - LinkedList#set - O(1)
+- LinkedList#remove_first - O(n). This method requires creating a new array to shift everything back one index.
+- LinkedList#remove_last - O(1). This only requires deleting the last node in the array and reassigning the tail to the previous node.
 
 Inserting a value in a LinkedList is faster than inserting a value in an ArrayList since you only need to change two elements (the one before and after the inserted Node) instead of having to change the entire array.
 
