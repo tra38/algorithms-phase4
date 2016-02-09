@@ -1,6 +1,5 @@
 require_relative 'node'
 require_relative 'array_list'
-require 'pry'
 
 #ArrayList Implementation of LinkedList
 
