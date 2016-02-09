@@ -33,3 +33,10 @@ Node-Based Approach:
 - LinkedList#remove_last - O(1).
 
 A node-based approach to linked lists is great for adding and removing nodes, but is pretty terrible at retreiving and inserting in nodes.
+
+In both the ArrayList Approach and the Node-Based Approach, I have kept track of the "tail" of a Linked List, which was NOT a good idea.
+
+1. First of all, the specs never mentioned keeping track of tails. This is why they mentioned LinkedList#insert_last should originally NOT be O(1)...because, after all, you don't have a pointer to the ending and have to traverse the Linked List to go to the 'tail'.
+2. Secondly, it means I have to do some maintance work to make sure that LinkedList#set doesn't accidentally insert in a node that should be a new tail. It's not entirely horrible.
+
+It seems that it might be better to move onto the next lesson in the Algos unit than to worry about some silliness like this.
