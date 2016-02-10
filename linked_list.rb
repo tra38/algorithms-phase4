@@ -149,17 +149,23 @@ class LinkedList
   end
 
   def set(index, element)
-    index_of_previous_node = index - 1
-    index_of_next_node = index
-    previous_node = self.get(index_of_previous_node)
-    next_node = self.get(index_of_next_node)
-    if previous_node
-      previous_node.next = element
+    if (index + 1) > size
+      insert_last(element)
+    elsif index == 0
+      insert_first(element)
+    else
+      index_of_previous_node = index - 1
+      index_of_next_node = index
+      previous_node = self.get(index_of_previous_node)
+      next_node = self.get(index_of_next_node)
+      if previous_node
+        previous_node.next = element
+      end
+      if next_node
+        element.next = next_node
+      end
+      increase_size
     end
-    if next_node
-      element.next = next_node
-    end
-    increase_size
   end
 
   #A O(n) implementation of size (I had already made an O(1) version)

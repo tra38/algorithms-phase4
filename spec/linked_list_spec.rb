@@ -39,8 +39,6 @@ RSpec.describe do
     expect(@linked_list.get(0)).to eq(@front_node)
   end
 
-
-
   it "returns nil if a user tries to remove a node in front of a linked list, but no such node exists" do
     expect(@linked_list.remove_first).to eq(nil)
   end
@@ -59,6 +57,22 @@ RSpec.describe do
     @linked_list.insert_first(@front_node)
     @linked_list.insert_last(@back_node)
     expect(@front_node.next).to eq(@back_node)
+  end
+
+  it "calls insert_last when inserting a node at the end of a list" do
+    @linked_list.insert_first(@front_node)
+    @linked_list.insert_last(@back_node)
+    @final_node = Node.new("tiger")
+    @linked_list.set(3,@final_node)
+    expect(@linked_list.tail).to be(@final_node)
+  end
+
+  it "calls insert_first when inserting a node at the start of a list" do
+    @linked_list.insert_first(@front_node)
+    @linked_list.insert_last(@back_node)
+    @starting_node = Node.new("monster")
+    @linked_list.set(0,@starting_node)
+    expect(@linked_list.head).to be(@starting_node)
   end
 
   describe "can insert a node in the middle of the linked list" do
