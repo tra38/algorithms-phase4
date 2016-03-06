@@ -1,6 +1,6 @@
 require_relative '../node.rb'
 
-RSpec.describe do
+RSpec.describe "Node" do
   before(:each) do
     @node = Node.new("lorem")
   end

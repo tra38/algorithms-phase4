@@ -1,6 +1,6 @@
 require_relative "../fixed_array"
 
-RSpec.describe do
+RSpec.describe "FixedArray" do
   array = FixedArray.new(5)
   it "gets an index that exist within an array" do
     expect(array.get(1)).to eq(nil)

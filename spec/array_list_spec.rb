@@ -1,6 +1,6 @@
 require_relative '../array_list.rb'
 
-RSpec.describe do
+RSpec.describe "ArrayList" do
   before(:each) do
     @array = ArrayList.new(5)
   end

@@ -1,6 +1,6 @@
 require_relative '../linked_list.rb'
 
-RSpec.describe do
+RSpec.describe "LinkedList" do
 
   before(:each) do
     @linked_list = LinkedList.new
