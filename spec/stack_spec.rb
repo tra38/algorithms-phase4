@@ -20,6 +20,10 @@ RSpec.describe "Stack" do
     expect(@stack.top).to eq(nil)
   end
 
+  it "allows you to pop from an empty stack" do
+    expect(@stack.pop).to eq(nil)
+  end
+
   describe "empty?" do
     it "should return true if empty" do
       expect(@stack.empty?).to be(true)
