@@ -40,3 +40,23 @@ In both the ArrayList Approach and the Node-Based Approach, I have kept track of
 2. Secondly, it means I have to do some maintance work to make sure that LinkedList#set doesn't accidentally insert in a node that should be a new tail. It's not entirely horrible.
 
 It seems that it might be better to move onto the next lesson in the Algos unit than to worry about some silliness like this.
+
+==Stack==
+
+ArrayList Approach
+
+- Stack#new - O(1). Constant initial size for the ArrayList.
+- Stack#top - O(1). Uses ArrayList#get.
+- Stack#push - O(n). Uses ArrayList#insert.
+- Stack#pop - O(n). Need to duplicate the array without the 'zeroeth' element. This method is a copycat of the ArrayList version of "Linked Lists".
+- Stack#empty? - O(1).
+
+LinkedList Approach
+
+- Stack#new - O(1).
+- Stack#top - O(1).
+- Stack#push - O(1).
+- Stack#pop - O(1).
+- Stack#empty? - O(1).
+
+In conclusion, the LinkedList approach is slightly better than the ArrayList approach simply because there is no need to resize the array or worry about moving elements around after an insertion/deletion.
