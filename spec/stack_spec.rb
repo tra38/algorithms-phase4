@@ -14,16 +14,25 @@ RSpec.describe "Stack" do
     expect(@stack.top).to eq("republic")
   end
 
-  it "allows you to pop from a stack" do
-    @stack.push("republic")
-    expect(@stack.pop).to eq("republic")
-    expect(@stack.top).to eq(nil)
-  end
+  describe "#pop" do
 
-  it "allows you to pop from an empty stack" do
-    expect(@stack.pop).to eq(nil)
-  end
+    it "allows you to pop from a stack" do
+      @stack.push("republic")
+      expect(@stack.pop).to eq("republic")
+      expect(@stack.top).to eq(nil)
+    end
 
+    it "allows you to pop from an empty stack" do
+      expect(@stack.pop).to eq(nil)
+    end
+
+    it "should handle stacks that are larger than one element" do
+      @stack.push("republic")
+      @stack.push("kingdom")
+      expect(@stack.pop).to eq("kingdom")
+      expect(@stack.top).to eq("republic")
+    end
+  end
   describe "empty?" do
     it "should return true if empty" do
       expect(@stack.empty?).to be(true)
