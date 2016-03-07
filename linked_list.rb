@@ -110,7 +110,11 @@ class LinkedList
   def insert_first(element)
     next_node = head
     @head = element
-    @head.next = next_node
+    if next_node
+      @head.next = next_node
+    else
+      @tail = @head
+    end
     increase_size
   end
 
@@ -136,8 +140,8 @@ class LinkedList
 
   def insert_last(element)
     @tail = element
-    node_before_tail.next = element if node_before_tail
     increase_size
+    node_before_tail.next = element if node_before_tail
   end
 
   def get(index)
@@ -187,10 +191,17 @@ class LinkedList
 
   def decrease_size
     self.size -= 1
+    @head, @tail = nil if size == 0
   end
 
   def node_before_tail
-    self.get(size - 2)
+    if size <= 1
+      nil
+    else
+      self.get(size - 2)
+    end
   end
+  # Node 0, Size 1, 1-2 == -1
+  # Node 0, Node 1, Size 2, 2-2=0
 
 end

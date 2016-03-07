@@ -16,6 +16,11 @@ RSpec.describe "LinkedList" do
     expect(@linked_list.head).to eq(@front_node)
   end
 
+  it "ensures that the the tail of a one-element linked list is the same as its head" do
+    @linked_list.insert_first(@front_node)
+    expect(@linked_list.head).to eq(@linked_list.tail)
+  end
+
   it "can remove a node in the front of a linked list, if such a node exists" do
     @linked_list.insert_first(@front_node)
     expect(@linked_list.remove_first).to eq(@front_node)
@@ -73,6 +78,15 @@ RSpec.describe "LinkedList" do
     @starting_node = Node.new("monster")
     @linked_list.set(0,@starting_node)
     expect(@linked_list.head).to be(@starting_node)
+  end
+
+  it "has no head or tail if all elements from the linked list were removed" do
+    @linked_list.insert_first(@front_node)
+    @linked_list.insert_last(@back_node)
+    @linked_list.remove_first
+    @linked_list.remove_last
+    expect(@linked_list.head).to eq(nil)
+    expect(@linked_list.tail).to eq(nil)
   end
 
   describe "can insert a node in the middle of the linked list" do
