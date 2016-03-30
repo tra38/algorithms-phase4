@@ -56,44 +56,51 @@ RSpec.describe "MySet" do
         @set_two.add(number)
       end
     end
-    it "can add two non-empty sets together" do
-      final_set = [1,2,3,4,5]
-      new_set = @set_one.union(@set_two)
-      expect(new_set.size).to eq(5)
-      final_set.each do |element|
-        expect(new_set.contains?(element)).to be true
+
+    describe "#union" do
+      it "can add two non-empty sets together" do
+        final_set = [1,2,3,4,5]
+        new_set = @set_one.union(@set_two)
+        expect(new_set.size).to eq(5)
+        final_set.each do |element|
+          expect(new_set.contains?(element)).to be true
+        end
+      end
+
+      it "can add two empty sets together" do
+        new_set = @blank_set.union(@blank_set)
+        expect(new_set.size).to eq(0)
+      end
+
+      it "can add a empty set and a non-empty set together" do
+        final_set = [1,2,3]
+        new_set = @blank_set.union(@set_one)
+        expect(new_set.size).to eq(3)
+        final_set.each do |element|
+          expect(new_set.contains?(element)).to be true
+        end
       end
     end
 
-    it "can add two empty sets together" do
-      new_set = @blank_set.union(@blank_set)
-      expect(new_set.size).to eq(0)
-    end
+    describe "#intersection" do
+      it "can find the intersection of two non-empty sets" do
+        new_set = @set_one.intersection(@set_two)
+        expect(new_set.size).to eq(1)
+        expect(new_set.contains?(3)).to be true
+      end
 
-    it "can add a empty set and a non-empty set together" do
-      final_set = [1,2,3]
-      new_set = @blank_set.union(@set_one)
-      expect(new_set.size).to eq(3)
-      final_set.each do |element|
-        expect(new_set.contains?(element)).to be true
+      it "can find the intersection of two empty sets" do
+        new_set = @blank_set.intersection(@blank_set)
+        expect(new_set.size).to eq(0)
+      end
+
+      it "can find the intersection of a empty set and a non-empty set" do
+        new_set = @blank_set.intersection(@set_one)
+        expect(new_set.size).to eq(0)
       end
     end
 
-    it "can find the intersection of two non-empty sets" do
-      new_set = @set_one.intersection(@set_two)
-      expect(new_set.size).to eq(1)
-      expect(new_set.contains?(3)).to be true
-    end
 
-    it "can find the intersection of two empty sets" do
-      new_set = @blank_set.intersection(@blank_set)
-      expect(new_set.size).to eq(0)
-    end
-
-    it "can find the intersection of a empty set and a non-empty set" do
-      new_set = @blank_set.intersection(@set_one)
-      expect(new_set.size).to eq(0)
-    end
   end
 
 
