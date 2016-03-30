@@ -1,5 +1,4 @@
 require_relative '../queue.rb'
-require 'pry'
 
 RSpec.describe "MyQueue" do
   before(:each) do
@@ -20,7 +19,6 @@ RSpec.describe "MyQueue" do
     it "can dequeue an element from the queue" do
       @queue.enqueue("empire")
       expect(@queue.dequeue).to eq("empire")
-      binding.pry
       expect(@queue.peel).to eq(nil)
     end
 
