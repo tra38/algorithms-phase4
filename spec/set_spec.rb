@@ -34,4 +34,10 @@ RSpec.describe "MySet" do
     expect(sum).to eq(6)
   end
 
+  it "will not have duplicate versions of the same element" do
+    @set.add(@word)
+    @set.add(@word)
+    expect(@set.size).to eq(1)
+  end
+
 end

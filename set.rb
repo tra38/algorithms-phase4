@@ -20,7 +20,7 @@ class MySet
   end
 
   def add(element)
-    entries.add(element)
+    entries.add(element) unless self.contains?(element)
   end
 
   def remove(element)
