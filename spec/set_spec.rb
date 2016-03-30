@@ -78,6 +78,22 @@ RSpec.describe "MySet" do
         expect(new_set.contains?(element)).to be true
       end
     end
+
+    it "can find the intersection of two non-empty sets" do
+      new_set = @set_one.intersection(@set_two)
+      expect(new_set.size).to eq(1)
+      expect(new_set.contains?(3)).to be true
+    end
+
+    it "can find the intersection of two empty sets" do
+      new_set = @blank_set.intersection(@blank_set)
+      expect(new_set.size).to eq(0)
+    end
+
+    it "can find the intersection of a empty set and a non-empty set" do
+      new_set = @blank_set.intersection(@set_one)
+      expect(new_set.size).to eq(0)
+    end
   end
 
 

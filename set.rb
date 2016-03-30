@@ -52,6 +52,14 @@ class MySet
     new_set
   end
 
+  def intersection(other_set)
+    new_set = MySet.new
+    self.iterate do |element|
+      new_set.add(element) if other_set.contains?(element)
+    end
+    new_set
+  end
+
   private
   def element_search(element)
     size.times do |index|
