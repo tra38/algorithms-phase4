@@ -100,9 +100,37 @@ RSpec.describe "MySet" do
       end
     end
 
+    describe "#difference" do
+      it "can find the difference of two non-empty sets" do
+        final_set = [1,2]
+        new_set = @set_one.difference(@set_two)
+        expect(new_set.size).to eq(2)
+        final_set.each do |element|
+          expect(new_set.contains?(element)).to be true
+        end
+      end
+
+      it "can find the difference of two empty sets" do
+        new_set = @blank_set.difference(@blank_set)
+        expect(new_set.size).to eq(0)
+      end
+
+      it "can find the difference of a non-empty set and an empty set" do
+        final_set = [1,2,3]
+        new_set = @set_one.difference(@blank_set)
+        expect(new_set.size).to eq(3)
+        final_set.each do |element|
+          expect(new_set.contains?(element)).to be true
+        end
+      end
+
+      it "can find the difference of a empty set and a non-empty set" do
+        new_set = @blank_set.difference(@set_one)
+        expect(new_set.size).to eq(0)
+      end
+    end
 
   end
-
 
 
 end

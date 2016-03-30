@@ -60,6 +60,18 @@ class MySet
     new_set
   end
 
+  def difference(other_set)
+    new_set = MySet.new
+    self.iterate do |element|
+      if other_set.contains?(element)
+        next
+      else
+        new_set.add(element)
+      end
+    end
+    new_set
+  end
+
   private
   def element_search(element)
     size.times do |index|
