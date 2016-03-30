@@ -41,6 +41,17 @@ class MySet
     end
   end
 
+  def union(other_set)
+    new_set = MySet.new
+    self.iterate do |element|
+      new_set.add(element)
+    end
+    other_set.iterate do |element|
+      new_set.add(element)
+    end
+    new_set
+  end
+
   private
   def element_search(element)
     size.times do |index|
