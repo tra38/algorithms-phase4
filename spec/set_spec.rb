@@ -49,11 +49,15 @@ RSpec.describe "MySet" do
       @blank_set = MySet.new
       @set_one = MySet.new
       @set_two = MySet.new
+      @large_set = MySet.new
       [1,2,3].each do |number|
         @set_one.add(number)
       end
       [3,4,5].each do |number|
         @set_two.add(number)
+      end
+      [1,2,3,4,5].each do |number|
+        @large_set.add(number)
       end
     end
 
@@ -127,6 +131,24 @@ RSpec.describe "MySet" do
       it "can find the difference of a empty set and a non-empty set" do
         new_set = @blank_set.difference(@set_one)
         expect(new_set.size).to eq(0)
+      end
+    end
+
+    describe "#subset?" do
+      it "can identify subsets" do
+        expect(@large_set.subset?(@set_one)).to eq(true)
+      end
+
+      it "can identify non-subsets" do
+        expect(@set_one.subset?(@large_set)).to eq(false)
+      end
+
+      it "can identify blank sets as being subsets of non-empty sets" do
+        expect(@set_one.subset?(@blank_set)).to eq(true)
+      end
+
+      it "can identify blank sets as being subsets of empty sets" do
+        expect(@blank_set.subset?(@blank_set)).to eq(true)
       end
     end
 

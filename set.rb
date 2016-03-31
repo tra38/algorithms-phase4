@@ -72,6 +72,17 @@ class MySet
     new_set
   end
 
+  def subset?(other_set)
+    other_set.iterate do |element|
+      if self.contains?(element)
+        next
+      else
+        return false
+      end
+    end
+    true
+  end
+
   private
   def element_search(element)
     size.times do |index|
