@@ -34,10 +34,10 @@ class MySet
     end
   end
 
-  def iterate(&block)
+  def iterate
     size.times do |index|
       element = entries.get(index)
-      block.call(element)
+      yield(element)
     end
   end
 
