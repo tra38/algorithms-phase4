@@ -102,6 +102,7 @@ class MySet
         next
       else
         temp_entries.set(counter, element)
+        counter += 1
       end
     end
     @entries = temp_entries

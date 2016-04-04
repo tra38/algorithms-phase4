@@ -31,6 +31,8 @@ class ArrayList
   end
 
   def set(index, element)
+    previous_element = @array.get(index)
+    @size += 1 if previous_element == nil
     @array.set(index, element)
   end
 

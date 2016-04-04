@@ -21,11 +21,22 @@ RSpec.describe "MySet" do
     end
 
     it "can remove an element from the set" do
-      word = "cough"
       @set.add(@word)
       @set.remove(@word)
       expect(@set.size).to eq(0)
-      expect(@set.contains?(word)).to eq(false)
+      expect(@set.contains?(@word)).to eq(false)
+    end
+
+    it "can remove an element from the set without affecting all other elements" do
+      @second_word = "second word"
+      @third_word = "third word"
+      [@word, @second_word, @third_word].each do |word|
+        @set.add(word)
+      end
+      @set.remove(@word)
+      expect(@set.size).to eq(2)
+      expect(@set.contains?(@second_word)).to eq(true)
+      expect(@set.contains?(@third_word)).to eq(true)
     end
 
     it "can iterate through a Set" do
