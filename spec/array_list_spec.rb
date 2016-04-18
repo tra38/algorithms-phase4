@@ -27,6 +27,12 @@ RSpec.describe "ArrayList" do
     expect(@array.size).to eq(1)
   end
 
+  it "decreases the size of an ArrayList if you are setting a value to nil" do
+    @array.set(0,"cat")
+    @array.set(0, nil)
+    expect(@array.size).to eq(0)
+  end
+
   it "can insert an element in this ArrayList" do
     expect(@array.insert(1,"cat")).to eq("cat")
     expect(@array.get(1)).to eq("cat")

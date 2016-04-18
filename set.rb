@@ -26,7 +26,6 @@ class MySet
   def remove(element)
     index_position = element_search(element)
     if index_position
-      # @size -= 1
       entries.set(index_position, nil)
       compact_entries
     else
@@ -84,6 +83,11 @@ class MySet
   end
 
   private
+
+  def set_length
+    entries.length
+  end
+
   def element_search(element)
     size.times do |index|
       if entries.get(index) == element
@@ -94,9 +98,10 @@ class MySet
   end
 
   def compact_entries
+
     temp_entries = ArrayList.new(5)
     counter = 0
-    size.times do |index|
+    set_length.times do |index|
       element = entries.get(index)
       if element == nil
         next
