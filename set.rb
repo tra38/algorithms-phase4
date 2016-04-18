@@ -84,7 +84,7 @@ class MySet
 
   private
 
-  def set_length
+  def entries_length
     entries.length
   end
 
@@ -98,10 +98,9 @@ class MySet
   end
 
   def compact_entries
-
     temp_entries = ArrayList.new(5)
     counter = 0
-    set_length.times do |index|
+    entries_length.times do |index|
       element = entries.get(index)
       if element == nil
         next
