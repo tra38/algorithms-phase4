@@ -41,7 +41,7 @@ class Node
     original_node = args[:original_node]
     block = args[:block]
 
-    if current_node.element == block.call
+    if block.call(current_node)
       return true
     elsif current_node.element == original_node.element
       return false
