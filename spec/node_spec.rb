@@ -31,4 +31,45 @@ RSpec.describe "Node" do
     expect(@node.nodes).to eq([@second_node, @third_node])
   end
 
+  describe "#exists? (acyclical)" do
+    it "returns true if a node has a First Degree connection to the target node ('ispum')" do
+      @node.add_edge(@second_node)
+      expect(@node.exists? { "ispum" }).to eq(true)
+    end
+
+    it "returns false if a node has no connection to the target node ('hipster')" do
+      @node.add_edge(@second_node)
+      expect(@node.exists? { "hipster" }).to eq(false)
+    end
+
+    it "returns true if a node has a Second Degree connection to the target node ('hipster')" do
+      @node.add_edge(@second_node)
+      @node.add_edge(@third_node)
+      expect(@node.exists? { "hipster" }).to eq(true)
+    end
+  end
+
+  describe "#exists? (cylical)"
+    it "returns true if a node has a First Degree connection to the target node ('ispum')" do
+      @node.add_edge(@second_node)
+      @second_node.add_edge(@third_node)
+      @third_node.add_edge(@node)
+      expect(@node.exists? { "ispum" }).to eq(true)
+    end
+
+  it "returns false if a node has no connection to the target node ('hipster')" do
+    @dummy_node = Node.new("dummy")
+    @node.add_edge(@second_node)
+    @second_node.add_edge(@dummy_node)
+    @dummy_node.add_edge(@node)
+    expect(@node.exists? { "hipster" }).to eq(false)
+  end
+
+  it "returns true if a node has a Second Degree connection to the target node ('hipster')" do
+    @node.add_edge(@second_node)
+    @second_node.add_edge(@third_node)
+    @third_node.add_edge(@node)
+    expect(@node.exists? { "hipster" }).to eq(true)
+  end
+
 end
