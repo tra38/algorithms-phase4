@@ -28,7 +28,9 @@ RSpec.describe "Node" do
   it "can add edges to a node" do
     @node.add_edge(@second_node)
     @node.add_edge(@third_node)
-    expect(@node.nodes).to eq([@second_node, @third_node])
+    edges = @node.nodes
+    expect(edges.contains?(@second_node)).to eq(true)
+    expect(edges.contains?(@third_node)).to eq(true)
   end
 
   describe "#exists? (acyclical)" do
