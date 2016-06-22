@@ -72,4 +72,24 @@ RSpec.describe "Node" do
     expect(@node.exists? { |node| node.element == "hipster" }).to eq(true)
   end
 
+  describe "#exists? (kinda cylical)" do
+    it "returns true if a node has a Second Degree Connection to the Target Node" do
+      @node.add_edge(@second_node)
+      @second_node.add_edge(@node)
+      @second_node.add_edge(@third_node)
+      @third_node.add_edge(@second_node)
+      expect(@node.exists? { |node| node.element == "hipster" }).to eq(true)
+    end
+
+    it "returns false if a node has no connection to the target node" do
+      @dummy_node = Node.new("dummy")
+      @node.add_edge(@second_node)
+      @second_node.add_edge(@node)
+      @second_node.add_edge(@dummy_node)
+      @dummy_node.add_edge(@second_node)
+      expect(@node.exists? { |node| node.element == "hipster" }).to eq(false)
+    end
+
+  end
+
 end
