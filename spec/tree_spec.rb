@@ -2,15 +2,15 @@ require_relative '../tree.rb'
 
 RSpec.describe "Tree" do
   before(:each) do
-    @bang = Node.new("bang")
-    @barbox = Node.new("bar-box")
-    @bazbox = Node.new("baz-box")
-    @foo = Node.new("foo")
+    @bang = GraphNode.new("bang")
+    @barbox = GraphNode.new("bar-box")
+    @bazbox = GraphNode.new("baz-box")
+    @foo = GraphNode.new("foo")
     @tree = Tree.new(@foo)
     @foo.add_child(@bang)
     @foo.add_child(@barbox)
     @barbox.add_child(@bazbox)
-    @sir_not_appearing_in_this_tree = Node.new("not_appearing_in_this_tree")
+    @sir_not_appearing_in_this_tree = GraphNode.new("not_appearing_in_this_tree")
   end
   it "can find the root of a Tree (foo)" do
     expect(@tree.search { "foo" }).to eq(@foo)

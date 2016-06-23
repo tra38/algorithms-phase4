@@ -2,10 +2,10 @@ require_relative '../graph_node.rb'
 
 RSpec.describe "GraphNode" do
   before(:each) do
-    @node = Node.new("lorem")
-    @second_node = Node.new("ispum")
-    @third_node = Node.new("hipster")
-    @dummy_node = Node.new("dummy")
+    @node = GraphNode.new("lorem")
+    @second_node = GraphNode.new("ispum")
+    @third_node = GraphNode.new("hipster")
+    @dummy_node = GraphNode.new("dummy")
   end
 
   it "can add edges to a node" do
@@ -19,18 +19,18 @@ RSpec.describe "GraphNode" do
   describe "#exists? (acyclical)" do
     it "returns true if a node has a First Degree connection to the target node ('ispum')" do
       @node.add_edge(@second_node)
-      expect(@node.exists? { |node| node.element == "ispum" }).to eq(true)
+      expect(@node.exists? { |node| node.value == "ispum" }).to eq(true)
     end
 
     it "returns false if a node has no connection to the target node ('hipster')" do
       @node.add_edge(@second_node)
-      expect(@node.exists? { |node| node.element == "hipster" }).to eq(false)
+      expect(@node.exists? { |node| node.value == "hipster" }).to eq(false)
     end
 
     it "returns true if a node has a Second Degree connection to the target node ('hipster')" do
       @node.add_edge(@second_node)
       @node.add_edge(@third_node)
-      expect(@node.exists? { |node| node.element == "hipster" }).to eq(true)
+      expect(@node.exists? { |node| node.value == "hipster" }).to eq(true)
     end
   end
 
@@ -39,21 +39,21 @@ RSpec.describe "GraphNode" do
       @node.add_edge(@second_node)
       @second_node.add_edge(@third_node)
       @third_node.add_edge(@node)
-      expect(@node.exists? { |node| node.element == "ispum" }).to eq(true)
+      expect(@node.exists? { |node| node.value == "ispum" }).to eq(true)
     end
 
   it "returns false if a node has no connection to the target node ('hipster')" do
     @node.add_edge(@second_node)
     @second_node.add_edge(@dummy_node)
     @dummy_node.add_edge(@node)
-    expect(@node.exists? { |node| node.element == "hipster" }).to eq(false)
+    expect(@node.exists? { |node| node.value == "hipster" }).to eq(false)
   end
 
   it "returns true if a node has a Second Degree connection to the target node ('hipster')" do
     @node.add_edge(@second_node)
     @second_node.add_edge(@third_node)
     @third_node.add_edge(@node)
-    expect(@node.exists? { |node| node.element == "hipster" }).to eq(true)
+    expect(@node.exists? { |node| node.value == "hipster" }).to eq(true)
   end
 
   describe "#exists? (kinda cylical)" do
@@ -62,7 +62,7 @@ RSpec.describe "GraphNode" do
       @second_node.add_edge(@node)
       @second_node.add_edge(@third_node)
       @third_node.add_edge(@second_node)
-      expect(@node.exists? { |node| node.element == "hipster" }).to eq(true)
+      expect(@node.exists? { |node| node.value == "hipster" }).to eq(true)
     end
 
     it "returns false if a node has no connection to the target node" do
@@ -70,7 +70,7 @@ RSpec.describe "GraphNode" do
       @second_node.add_edge(@node)
       @second_node.add_edge(@dummy_node)
       @dummy_node.add_edge(@second_node)
-      expect(@node.exists? { |node| node.element == "hipster" }).to eq(false)
+      expect(@node.exists? { |node| node.value == "hipster" }).to eq(false)
     end
 
   end
