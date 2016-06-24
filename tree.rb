@@ -14,9 +14,8 @@ class Tree
     if node.value == search_term
       return node
     else
-      edges = node.children.dup
-      until edges.empty?
-        edge = edges.dequeue
+      edges = node.children
+      edges.iterate do |edge|
         result = recursive_search(edge, search_term)
         if result
           return result

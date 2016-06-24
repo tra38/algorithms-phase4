@@ -1,15 +1,14 @@
-require_relative 'queue'
 require_relative 'set'
 
 class GraphNode
   attr_reader :value, :nodes
   def initialize(value)
     @value = value
-    @nodes = MyQueue.new
+    @nodes = MySet.new
   end
 
   def add_edge(node)
-    nodes.enqueue(node)
+    nodes.add(node)
   end
 
 #These "helper" methods are used when creating Trees. 
@@ -23,10 +22,8 @@ class GraphNode
 
   def exists?(&block)
     original_node = self
-    list_of_edges = nodes.dup
-    until list_of_edges.empty?
-      node = list_of_edges.dequeue
-      final_result = recursive_exists(block: block, original_node: original_node, current_node: node, history: MySet.new )
+    nodes.iterate do |node|
+      final_result = recursive_exists(block: block, original_node: original_node, current_node: node, history: MySet.new)
       return true if final_result
     end
     false
@@ -45,9 +42,9 @@ class GraphNode
       return false
     else
       history.add(current_node)
-      list_of_edges = current_node.nodes.dup
-      until list_of_edges.empty?
-        edge = list_of_edges.dequeue
+      edges = current_node.nodes
+
+      edges.iterate do |edge|
         final_result = recursive_exists(block: block, original_node: original_node, current_node: edge, history: history)
         return true if final_result
       end
