@@ -1,4 +1,5 @@
 require_relative '../graph_node.rb'
+require_relative '../set.rb'
 
 RSpec.describe "GraphNode" do
   before(:each) do
@@ -11,9 +12,13 @@ RSpec.describe "GraphNode" do
   it "can add edges to a node" do
     @node.add_edge(@second_node)
     @node.add_edge(@third_node)
-    edges = @node.nodes
-    expect(edges.contains?(@second_node)).to eq(true)
-    expect(edges.contains?(@third_node)).to eq(true)
+    edges = @node.nodes.dup
+    @set = MySet.new
+    until edges.empty?
+      @set.add(edges.dequeue)
+    end
+    expect(@set.contains?(@second_node)).to eq(true)
+    expect(@set.contains?(@third_node)).to eq(true)
   end
 
   describe "#exists? (acyclical)" do
