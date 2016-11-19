@@ -63,4 +63,9 @@ RSpec.describe "ArrayList" do
     end
   end
 
+  it "can automatically expand an ArrayList by setting an element 'out-of-bounds'" do
+    @array.set(100, "elephant")
+    expect(@array.get(100)).to eq("elephant")
+  end
+
 end

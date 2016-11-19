@@ -10,7 +10,7 @@ class ArrayList
   end
 
   def add(element)
-    resize_array if array_needs_resizing?
+    resize_array if array_is_too_small?
     @size += 1
     @array.set(size - 1, element)
     element
@@ -31,6 +31,7 @@ class ArrayList
   end
 
   def set(index, element)
+    resize_array_if_out_of_bounds(index)
     previous_element = @array.get(index)
     @size += 1 if previous_element == nil
     @size -= 1 if element == nil
@@ -38,7 +39,7 @@ class ArrayList
   end
 
   def insert(index_to_insert, element_to_insert)
-    resize_array if array_needs_resizing?
+    resize_array if array_is_too_small?
     next_index = index_to_insert + 1
     (next_index).upto(size) do |index|
       element = @array.get(index - 1)
@@ -49,8 +50,19 @@ class ArrayList
   end
 
   private
-  def array_needs_resizing?
+  def resize_array_if_out_of_bounds(index)
+    if out_of_bounds?(index)
+      resize_array
+      resize_array_if_out_of_bounds(index)
+    end
+  end
+
+  def array_is_too_small?
     (@length < @size + 1 )
+  end
+
+  def out_of_bounds?(index)
+    (@length < index + 1)
   end
 
 end
