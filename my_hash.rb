@@ -1,3 +1,5 @@
+require_relative 'array_list'
+
 class MyHash
   attr_reader :array
   def initialize
