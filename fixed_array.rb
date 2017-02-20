@@ -1,27 +1,26 @@
-class OutOFBoundsException < RuntimeError
-end
-
 class FixedArray
   attr_reader :size
 
   def initialize(size)
     @size = size
     size.times do |index|
-      self.instance_variable_set(:"@index#{index}", nil)
+      set(index, nil)
     end
   end
 
   def get(index)
-    if instance_variable_defined?(:"@index#{index}")
-      self.instance_variable_get("@index#{index}")
-    else
-      raise OutOFBoundsException
-    end
+    instance_variable_get(name(index))
   end
 
   def set(index, value)
-    self.instance_variable_set(:"@index#{index}", value)
+    instance_variable_set(name(index), value)
     value
+  end
+
+  private
+  def name(index)
+    raise IndexError unless (0...size).include?(index)
+    "@index#{index}"
   end
 
 end
