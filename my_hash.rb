@@ -3,7 +3,7 @@ require_relative 'array_list'
 class MyHash
   attr_reader :array
   def initialize
-    @array = ArrayList.new(5)
+    @array = ArrayList.new(100)
   end
 
   def set(key, value)
