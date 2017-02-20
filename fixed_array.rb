@@ -19,7 +19,7 @@ class FixedArray
   private
   def name(index)
     raise IndexError unless (0...size).include?(index)
-    "@index#{index}"
+    :"@index#{index}"
   end
 
 end
