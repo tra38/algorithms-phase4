@@ -14,7 +14,6 @@ class FixedArray
 
   def set(index, value)
     instance_variable_set(name(index), value)
-    value
   end
 
   private
