@@ -32,4 +32,8 @@ class MyHash
     string[0].ord
   end
 
+  def size
+    array.size
+  end
+
 end

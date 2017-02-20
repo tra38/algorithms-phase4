@@ -21,6 +21,10 @@ RSpec.describe "Hash" do
     expect(@hash.get("beta")).to eq(nil)
   end
 
+  it "can retrieve the size of a Hash" do
+    expect(@hash.size).to eq(2)
+  end
+
   describe "#has_key?" do
     it "returns true if a key exists" do
       expect(@hash.has_key?("alpha")).to eq(true)
@@ -30,7 +34,6 @@ RSpec.describe "Hash" do
       expect(@hash.has_key?("omega")).to eq(false)
     end
   end
-
 
 end
 
