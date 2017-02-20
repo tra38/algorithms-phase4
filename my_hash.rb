@@ -31,7 +31,8 @@ class MyHash
   end
 
   def hashing_function(string)
-    string[0].ord
+    key = string.to_s
+    key[0].ord
   end
 
   def size
