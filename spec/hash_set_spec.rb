@@ -44,7 +44,7 @@ RSpec.describe "HashSet" do
       @set.add(2)
       @set.add(3)
       sum = 0
-      @set.iterate { |number| binding.pry; sum += number }
+      @set.iterate { |number| sum += number }
       expect(sum).to eq(6)
     end
 
