@@ -5,12 +5,14 @@ require_relative 'my_hash'
 
 class HashSet
   attr_reader :entries, :element_array, :elements_locator
-  attr_accessor :size
   def initialize
-    @size = 0
     @entries = MyHash.new
     @element_array = ArrayList.new(10)
     @elements_locator = MyHash.new
+  end
+
+  def size
+    element_array.size
   end
 
   def contains?(element)
@@ -21,8 +23,6 @@ class HashSet
     unless contains?(element)
       entries.set(element, element)
 
-      self.size += 1
-
       save_element_location(element)
     end
   end
@@ -30,8 +30,6 @@ class HashSet
   def remove(element)
     if contains?(element)
       entries.remove(element)
-
-      self.size -= 1
 
       remove_element_location(element)
     else
