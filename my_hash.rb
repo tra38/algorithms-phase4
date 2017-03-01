@@ -38,10 +38,6 @@ class MyHash
     key[0].ord
   end
 
-  def size
-    array.size
-  end
-
   private
   def access_potential_linked_list(index)
     array.get(index)
