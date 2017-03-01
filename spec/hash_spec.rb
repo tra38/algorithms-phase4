@@ -49,5 +49,33 @@ RSpec.describe "Hash" do
     end
   end
 
+  describe "hashing collisions" do
+    it "can still successfuly retrieve values in the event of a hashing collision" do
+      @hash.set("blah", 5)
+      expect(@hash.get("beta")).to eq(2)
+      expect(@hash.get("blah")).to eq(5)
+    end
+
+    it "can still remove values in the event of an hashing collision" do
+      @hash.set("blah", 5)
+      @hash.remove("beta")
+      expect(@hash.get("beta")).to eq(nil)
+      expect(@hash.get("blah")).to eq(5)
+    end
+
+    it "returns proper values for has_key? if a key exists" do
+      @hash.set("blah", 5)
+      expect(@hash.has_key?("beta")).to eq(true)
+      expect(@hash.has_key?("blah")).to eq(true)
+    end
+
+    it "returns proper values for has_key? if a key has been removed" do
+      @hash.set("blah", 5)
+      @hash.remove("beta")
+      expect(@hash.has_key?("beta")).to eq(false)
+      expect(@hash.has_key?("blah")).to eq(true)
+    end
+  end
+
 end
 
