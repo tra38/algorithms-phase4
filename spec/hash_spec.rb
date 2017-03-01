@@ -43,6 +43,10 @@ RSpec.describe "Hash" do
     it "correctly hashes numbers" do
       expect(@hash.hashing_function(5)).to eq(53)
     end
+
+    it "has a hashing collision when the first character of the key is the same" do
+      expect(@hash.hashing_function("beta")).to eq(@hash.hashing_function("blah"))
+    end
   end
 
 end
