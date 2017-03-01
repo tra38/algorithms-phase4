@@ -35,14 +35,14 @@ RSpec.describe "Hash" do
     end
   end
 
-  describe "#hashing_function"
+  describe "#hashing_function" do
+    it "correctly hashes words" do
+      expect(@hash.hashing_function("beta")).to eq(98)
+    end
 
-  it "correctly hashes words" do
-    expect(@hash.hashing_function("beta")).to eq(98)
-  end
-
-  it "correctly hashes numbers" do
-    expect(@hash.hashing_function(5)).to eq(53)
+    it "correctly hashes numbers" do
+      expect(@hash.hashing_function(5)).to eq(53)
+    end
   end
 
 end
